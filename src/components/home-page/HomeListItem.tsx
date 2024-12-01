@@ -65,8 +65,8 @@ const HomeListItem = ({ data }: { data: Product }) => {
     <ItemContainer>
       <ItemImgContainer>
         <img
-          height={105}
-          width={105}
+          height={276}
+          width={307}
           src={data.img}
           alt={data.title + " image."}
         />
