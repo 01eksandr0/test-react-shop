@@ -128,22 +128,22 @@ const Footer = () => {
             <Logo src="/assets/logo.svg" alt="logo" />
             <LinkList>
               <li>
-                <LinkItem href="">
+                <LinkItem href="" aria-label="Facebook link">
                   <FaFacebookF />
                 </LinkItem>
               </li>
               <li>
-                <LinkItem href="">
+                <LinkItem href="" aria-label="Instagram link">
                   <FaInstagram />
                 </LinkItem>
               </li>
               <li>
-                <LinkItem href="">
+                <LinkItem href="" aria-label="Twitter link">
                   <FaTwitter />
                 </LinkItem>
               </li>
               <li>
-                <LinkItem href="">
+                <LinkItem href="" aria-label="Pinterest link">
                   <FaPinterestP />
                 </LinkItem>
               </li>

@@ -164,7 +164,7 @@ const Header = () => {
             <MenuButton>
               <LuMenu />
             </MenuButton>
-            <MenuLink to="/shop">
+            <MenuLink to="/shop" aria-label="Link to cart page">
               <MdOutlineShoppingCart size={24} />
               {totalItems > 0 && (
                 <ShopProductsCount>{totalItems}</ShopProductsCount>
