@@ -85,7 +85,11 @@ const MenuButton = styled.button`
   align-items: center;
   justify-content: center;
   color: #004832;
-
+  & svg {
+    height: 22px;
+    width: 22px;
+    flex-shrink: 0;
+  }
   &:focus {
     outline: none;
   }
@@ -158,7 +162,7 @@ const Header = () => {
           </Nav>
           <ButtonsContainer>
             <MenuButton>
-              <LuMenu size={24} />
+              <LuMenu />
             </MenuButton>
             <MenuLink to="/shop">
               <MdOutlineShoppingCart size={24} />
