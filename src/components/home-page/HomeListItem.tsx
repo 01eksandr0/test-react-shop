@@ -64,7 +64,12 @@ const HomeListItem = ({ data }: { data: Product }) => {
   return (
     <ItemContainer>
       <ItemImgContainer>
-        <img src={data.img} alt={data.title + " image."} />
+        <img
+          height={105}
+          width={105}
+          src={data.img}
+          alt={data.title + " image."}
+        />
       </ItemImgContainer>
       <ItemPriceBlock>
         <ItemTitle>“{data.title}”</ItemTitle>
