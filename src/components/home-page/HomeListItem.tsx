@@ -51,7 +51,7 @@ const ItemButton = styled.button`
   background-color: #ffd012;
   font-weight: 700;
   border-radius: 30px;
-  color: #fff;
+  color: #000;
   transition: background-color 300ms linear, border 300ms linear;
   &:hover {
     background-color: #ffffff;

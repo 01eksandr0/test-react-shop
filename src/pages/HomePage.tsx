@@ -41,7 +41,7 @@ const Button = styled.button`
   border-radius: 30px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
   transition: background-color 300ms linear;
-  color: #fff;
+  color: #000;
   &:hover {
     background-color: #ffffff;
   }
