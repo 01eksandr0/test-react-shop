@@ -43,7 +43,7 @@ const ItemDataContainer = styled.div`
   flex-direction: column;
   gap: 14px;
   align-items: center;
-  &:p {
+  & > p {
     font-size: 12px;
   }
   @media screen and (min-width: 1440px) {
@@ -78,6 +78,7 @@ const Input = styled.input`
 
 const ButtonDelete = styled.button`
   background-color: #fff;
+  color: #000;
   &:focus {
     outline: none;
   }
