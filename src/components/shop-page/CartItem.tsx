@@ -79,6 +79,7 @@ const Input = styled.input`
 const ButtonDelete = styled.button`
   background-color: #fff;
   color: #000;
+  flex-shrink: 1;
   &:focus {
     outline: none;
   }
