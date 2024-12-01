@@ -9,19 +9,19 @@ import image5 from "../../public/assets/products/image5.jpg";
 import image6 from "../../public/assets/products/image6.jpg";
 import image7 from "../../public/assets/products/image7.jpg";
 import image8 from "../../public/assets/products/image8.jpg";
+import { Product } from "../types/product";
 
-type Product = {
-  id: number;
-  title: string;
-  price: number;
-  img: string;
-};
+type CartItem = Product & { count: number };
 
 type ShopState = {
   products: Product[];
-  cart: Product[];
+  cart: CartItem[];
   addToCart: (id: number) => void;
   removeFromCart: (id: number) => void;
+  updateCartItemCount: (id: number, newCount: number) => void;
+  totalCartPrice: () => number;
+  totalCartItems: () => number;
+  removeAllCart: () => void;
 };
 
 export const useShopStore = create<ShopState>()(
@@ -81,17 +81,52 @@ export const useShopStore = create<ShopState>()(
       addToCart: (id: number) => {
         const { products, cart } = get();
         const product = products.find((item) => item.id === id);
-        if (product && !cart.find((item) => item.id === id)) {
-          set({ cart: [...cart, product] });
+
+        if (product) {
+          const existingItem = cart.find((item) => item.id === id);
+
+          if (existingItem) {
+            set({
+              cart: cart.map((item) =>
+                item.id === id ? { ...item, count: item.count + 1 } : item
+              ),
+            });
+          } else {
+            set({ cart: [...cart, { ...product, count: 1 }] });
+          }
         }
       },
       removeFromCart: (id: number) => {
         const { cart } = get();
         set({ cart: cart.filter((item) => item.id !== id) });
       },
+      removeAllCart: () => {
+        set({ cart: [] });
+      },
+      updateCartItemCount: (id: number, newCount: number) => {
+        const { cart } = get();
+
+        if (newCount === 0) {
+          set({ cart: cart.filter((item) => item.id !== id) });
+        } else {
+          set({
+            cart: cart.map((item) =>
+              item.id === id ? { ...item, count: newCount } : item
+            ),
+          });
+        }
+      },
+      totalCartPrice: () => {
+        const { cart } = get();
+        return cart.reduce((total, item) => total + item.price * item.count, 0);
+      },
+      totalCartItems: () => {
+        const { cart } = get();
+        return cart.reduce((total, item) => total + item.count, 0);
+      },
     }),
     {
-      name: "shop-storage",
+      name: "shop",
     }
   )
 );

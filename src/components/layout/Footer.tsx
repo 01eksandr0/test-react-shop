@@ -125,7 +125,7 @@ const Footer = () => {
       <Container>
         <FooterContainer>
           <div>
-            <Logo src="../../../public/assets/logo.svg" alt="logo" />
+            <Logo src="/assets/logo.svg" alt="logo" />
             <LinkList>
               <li>
                 <LinkItem href="">

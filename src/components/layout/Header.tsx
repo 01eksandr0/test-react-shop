@@ -3,15 +3,21 @@ import styled from "styled-components";
 import { LuMenu } from "react-icons/lu";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import Container from "./Container";
+import { useShopStore } from "../../stores/products";
 
 const HeaderWrapper = styled.header`
   height: 62px;
   background-color: #004832;
   padding: 10px 0;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 2;
 
   @media screen and (min-width: 1440px) {
     height: 120px;
     padding: 31px 0;
+    position: static;
   }
 `;
 
@@ -48,18 +54,18 @@ const NavList = styled.ul`
   align-items: center;
   justify-content: start;
   gap: 24px;
-  padding: 0 10px;
+  padding: 0;
 `;
 
 const NavItem = styled(NavLink)`
-  padding: 6px 16px;
+  padding: 12px 16px;
   border-radius: 100px;
   color: #000;
   text-decoration: none;
 
   &.active {
     background-color: #ffd012;
-    color: #fff;
+    color: #004832;
   }
 `;
 
@@ -99,6 +105,7 @@ const MenuLink = styled(Link)`
   justify-content: center;
   color: #004832;
   text-decoration: none;
+  position: relative;
 
   &:hover {
     color: #004832;
@@ -110,12 +117,29 @@ const MenuLink = styled(Link)`
   }
 `;
 
+const ShopProductsCount = styled.div`
+  height: 20px;
+  width: 20px;
+  display: flex;
+  border-radius: 50%;
+  background-color: white;
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  font-size: 10px;
+  font-weight: 700;
+  align-items: center;
+  justify-content: center;
+`;
+
 const Header = () => {
+  const totalItems = useShopStore((state) => state.totalCartItems());
+
   return (
     <HeaderWrapper>
       <Container>
         <HeaderContainer>
-          <Logo src="../../../public/assets/logo.svg" alt="Logo" />
+          <Logo src="/assets/logo.svg" alt="Logo" />
           <Nav>
             <NavList>
               <li>
@@ -125,10 +149,10 @@ const Header = () => {
                 <NavItem to="/shop">Shop</NavItem>
               </li>
               <li>
-                <NavItem to="/1">About</NavItem>
+                <NavItem to="/about">About</NavItem>
               </li>
               <li>
-                <NavItem to="/2">Contact</NavItem>
+                <NavItem to="/contact">Contact</NavItem>
               </li>
             </NavList>
           </Nav>
@@ -138,6 +162,9 @@ const Header = () => {
             </MenuButton>
             <MenuLink to="/shop">
               <MdOutlineShoppingCart size={24} />
+              {totalItems > 0 && (
+                <ShopProductsCount>{totalItems}</ShopProductsCount>
+              )}
             </MenuLink>
           </ButtonsContainer>
         </HeaderContainer>
