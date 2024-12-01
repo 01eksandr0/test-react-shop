@@ -59,7 +59,7 @@ const ShopData = styled.div`
     display: flex;
     flex-direction: column;
     gap: 24px;
-    overflow: auto;
+    overflow-y: auto;
     max-height: 400px;
   }
 `;
